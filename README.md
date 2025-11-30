@@ -1,9 +1,4 @@
-Here is a **professional**, **formal**, **emoji-free**, **shorter**, **cleaner**, and **more effective** version of your README.
-I kept everything clear, structured, and industry-standard.
-
----
-
-# Django Blog Project
+# <h1 align="center"> Django Blog Project </h1>
 
 A professional and feature-rich blogging platform that provides a complete content management system with modern user interaction and performance-focused features.
 
@@ -45,9 +40,9 @@ A professional and feature-rich blogging platform that provides a complete conte
 ### Backend
 
 - Django 5.2.8
-- SQLite (development) / PostgreSQL (production)
+- SQLite (development)
 - Pillow
-- django-taggit
+- django-taggit (Tagging System)
 
 ### Frontend
 
@@ -129,8 +124,6 @@ blog_project/
 │   └── wsgi.py
 ├── templates/
 │   └── registration/
-├── static/
-├── media/
 ├── requirements.txt
 └── manage.py
 ```
@@ -180,26 +173,12 @@ The default development configuration includes:
 ```python
 DEBUG = True
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
-STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
+# STATIC_URL = '/static/'
+# MEDIA_URL = '/media/'
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'blog:dashboard'
 LOGOUT_REDIRECT_URL = 'blog:post_list'
 ```
-
-## Deployment Notes
-
-- Set `DEBUG = False`
-- Use PostgreSQL in production
-- Configure static and media file hosting
-- Set up email backend
-- Use a secure WSGI server
-- Enable SSL and secure cookies
-
-## API Endpoints (Optional Integration)
-
-- `GET /api/posts/` — List published posts
-- `GET /api/posts/<slug>/` — Post details
 
 ## Contributing
 
@@ -213,7 +192,9 @@ Follow Django coding standards and provide documentation for new features.
 ## Credits
 
 Developed by **Md Rakibul Hassan**
+
 CSE Undergraduate | Backend Developer | Robotics and IoT Enthusiast
+
 [LinkedIn](https://www.linkedin.com/in/md-rakibul-hassan-507b00308)
 [GitHub](https://github.com/RR0327)
 
