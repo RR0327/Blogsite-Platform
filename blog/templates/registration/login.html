@@ -1,0 +1,100 @@
+{% extends "blog/base.html" %}
+{% load static %}
+
+{% block title %}Login - BlogSite{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+        <div class="text-center mb-5">
+            <h1 class="display-5 fw-bold" style="color: var(--primary-color);">
+                Welcome Back
+            </h1>
+            <p class="text-muted">Sign in to your account to continue</p>
+        </div>
+
+        <div class="card border-0 shadow">
+            <div class="card-body p-5">
+                {% if form.errors %}
+                    <div class="alert alert-danger">
+                        <i class="fas fa-exclamation-circle me-2"></i>
+                        Please enter a correct username and password.
+                    </div>
+                {% endif %}
+
+                {% if next %}
+                    {% if user.is_authenticated %}
+                        <div class="alert alert-warning">
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            Your account doesn't have access to this page.
+                        </div>
+                    {% else %}
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i>
+                            Please login to see this page.
+                        </div>
+                    {% endif %}
+                {% endif %}
+
+                <form method="post" novalidate>
+                    {% csrf_token %}
+                    
+                    <input type="hidden" name="next" value="{{ next }}">
+
+                    <div class="mb-4">
+                        <label for="id_username" class="form-label fw-semibold">
+                            <i class="fas fa-user me-2"></i>Username
+                        </label>
+                        <input type="text" name="username" id="id_username" 
+                               class="form-control form-control-lg" 
+                               placeholder="Enter your username" 
+                               required 
+                               autofocus 
+                               autocapitalize="none"
+                               autocomplete="username">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="id_password" class="form-label fw-semibold">
+                            <i class="fas fa-lock me-2"></i>Password
+                        </label>
+                        <input type="password" name="password" id="id_password" 
+                               class="form-control form-control-lg" 
+                               placeholder="Enter your password" 
+                               required 
+                               autocomplete="current-password">
+                    </div>
+
+                    <div class="d-grid mb-4">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-sign-in-alt me-2"></i>Sign In
+                        </button>
+                    </div>
+
+                    <div class="text-center">
+                        <p class="text-muted mb-0">
+                            Don't have an account? 
+                            <a href="{% url 'register' %}" class="text-decoration-none fw-semibold" 
+                               style="color: var(--primary-color);">Create one here</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.form-control {
+    border-radius: 10px;
+    border: 2px solid var(--border-color);
+    padding: 0.75rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(44, 90, 160, 0.25);
+}
+</style>
+{% endblock %}

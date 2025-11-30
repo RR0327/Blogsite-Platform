@@ -1,0 +1,113 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% load blog_tags %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <div class="d-flex align-items-center mb-4">
+            <h1 class="display-5 me-3" style="color: var(--primary-color);">
+                Posts tagged with 
+            </h1>
+            <span class="tag-badge" style="font-size: 1.5rem;">{{ tag.name }}</span>
+        </div>
+
+        {% for post in posts %}
+            <div class="card post-card">
+                <div class="card-body">
+                    {% if post.featured_image %}
+                        <img src="{{ post.featured_image.url }}" class="card-img-top mb-3" 
+                             alt="{{ post.title }}" style="height: 200px; object-fit: cover; border-radius: 8px;">
+                    {% endif %}
+                    
+                    <h2 class="card-title">
+                        <a href="{{ post.get_absolute_url }}" class="text-decoration-none" 
+                           style="color: var(--primary-color);">{{ post.title }}</a>
+                    </h2>
+                    
+                    <div class="text-muted mb-2">
+                        <small>By {{ post.author.username }} • {{ post.created_at|date:"F d, Y" }}</small>
+                    </div>
+                    
+                    <p class="card-text">{{ post.content|truncatechars:200 }}</p>
+                    
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <span class="text-muted">
+                                <i class="fas fa-heart" style="color: var(--accent-color);"></i>
+                                {{ post.get_like_count }} likes •
+                                <i class="fas fa-comment" style="color: var(--secondary-color);"></i>
+                                {{ post.comment_set.count }} comments
+                            </span>
+                        </div>
+                        <a href="{{ post.get_absolute_url }}" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="text-center py-5">
+                <h3 style="color: var(--secondary-color);">No posts found with this tag</h3>
+                <p class="text-muted">Try browsing other tags or create a post with this tag!</p>
+                <a href="{% url 'blog:post_list' %}" class="btn btn-primary">Back to All Posts</a>
+            </div>
+        {% endfor %}
+
+        <!-- Pagination -->
+        {% if is_paginated %}
+            <nav aria-label="Tag pagination" class="mt-4">
+                <ul class="pagination justify-content-center">
+                    {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}" 
+                               style="color: var(--primary-color);">Previous</a>
+                        </li>
+                    {% endif %}
+                    
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if page_obj.number == num %}
+                            <li class="page-item active">
+                                <a class="page-link" href="?page={{ num }}"
+                                   style="background: var(--primary-color); border-color: var(--primary-color);">
+                                    {{ num }}
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ num }}"
+                                   style="color: var(--primary-color);">{{ num }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                    
+                    {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}"
+                               style="color: var(--primary-color);">Next</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        {% endif %}
+    </div>
+    
+    <!-- Sidebar -->
+    <div class="col-md-4">
+        <div class="sidebar-widget">
+            <h4 style="color: var(--secondary-color);">📝 Recent Posts</h4>
+            {% show_recent_posts %}
+        </div>
+        
+        <div class="sidebar-widget">
+            <h4 style="color: var(--secondary-color);">🏷️ Popular Tags</h4>
+            {% get_popular_tags as tags %}
+            <div class="tag-cloud">
+                {% for tag in tags %}
+                    <a href="{% url 'blog:posts_by_tag' tag.slug %}" class="tag-badge">
+                        {{ tag.name }}
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

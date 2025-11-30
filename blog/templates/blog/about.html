@@ -1,0 +1,289 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% load blog_tags %}
+
+{% block title %}About -BlogSite{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <!-- Header Section -->
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold" style="color: var(--primary-color);">
+                About BlogSite
+            </h1>
+            <p class="lead text-muted">
+                Discover the story behind our blogging platform and meet the team
+            </p>
+        </div>
+
+        <!-- Mission Section -->
+        <div class="row mb-5">
+            <div class="col-lg-8 mx-auto">
+                <div class="card border-0 shadow">
+                    <div class="card-body p-5">
+                        <h2 class="mb-4" style="color: var(--primary-color);">
+                            <i class="fas fa-bullseye me-3"></i>Our Mission
+                        </h2>
+                        <p class="fs-5 mb-4">
+                            BlogSite is a modern, feature-rich blogging platform built with Django. 
+                            Our mission is to provide writers and content creators with a powerful yet simple 
+                            platform to share their thoughts, stories, and expertise with the world.
+                        </p>
+                        <p class="fs-5">
+                            We believe everyone has a story to tell, and we're here to make that process 
+                            as seamless and enjoyable as possible.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics Section -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <h2 class="text-center mb-4" style="color: var(--primary-color);">
+                    <i class="fas fa-chart-bar me-3"></i>By The Numbers
+                </h2>
+                <div class="row text-center">
+                    <div class="col-md-3 mb-4">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body py-4">
+                                <div class="stats-icon mb-3" style="color: var(--primary-color);">
+                                    <i class="fas fa-file-alt fa-2x"></i>
+                                </div>
+                                <h3 class="fw-bold display-6">{{ stats.total_posts }}</h3>
+                                <p class="text-muted mb-0">Total Posts</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body py-4">
+                                <div class="stats-icon mb-3" style="color: var(--success-color);">
+                                    <i class="fas fa-users fa-2x"></i>
+                                </div>
+                                <h3 class="fw-bold display-6">{{ stats.total_authors }}</h3>
+                                <p class="text-muted mb-0">Active Authors</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body py-4">
+                                <div class="stats-icon mb-3" style="color: var(--warning-color);">
+                                    <i class="fas fa-comments fa-2x"></i>
+                                </div>
+                                <h3 class="fw-bold display-6">{{ stats.total_comments }}</h3>
+                                <p class="text-muted mb-0">Comments</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-4">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body py-4">
+                                <div class="stats-icon mb-3" style="color: var(--accent-color);">
+                                    <i class="fas fa-heart fa-2x"></i>
+                                </div>
+                                <h3 class="fw-bold display-6">{{ stats.total_likes }}</h3>
+                                <p class="text-muted mb-0">Likes</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <h2 class="text-center mb-4" style="color: var(--primary-color);">
+                    <i class="fas fa-star me-3"></i>Why Choose BlogSite?
+                </h2>
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body text-center p-4">
+                                <div class="feature-icon mb-3" style="color: var(--primary-color);">
+                                    <i class="fas fa-edit fa-3x"></i>
+                                </div>
+                                <h4 class="fw-bold">Easy Writing</h4>
+                                <p class="text-muted">
+                                    Intuitive editor with rich text formatting and media support
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body text-center p-4">
+                                <div class="feature-icon mb-3" style="color: var(--success-color);">
+                                    <i class="fas fa-tags fa-3x"></i>
+                                </div>
+                                <h4 class="fw-bold">Smart Tagging</h4>
+                                <p class="text-muted">
+                                    Organize your content with powerful tagging and categorization
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body text-center p-4">
+                                <div class="feature-icon mb-3" style="color: var(--warning-color);">
+                                    <i class="fas fa-chart-line fa-3x"></i>
+                                </div>
+                                <h4 class="fw-bold">Powerful Analytics</h4>
+                                <p class="text-muted">
+                                    Track your post performance with detailed analytics and insights
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Team Section -->
+        {% if team_members %}
+        <div class="row mb-5">
+            <div class="col-12">
+                <h2 class="text-center mb-4" style="color: var(--primary-color);">
+                    <i class="fas fa-users me-3"></i>Meet Our Authors
+                </h2>
+                <div class="row">
+                    {% for member in team_members %}
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card border-0 shadow-sm h-100 text-center">
+                            <div class="card-body p-4">
+                                <div class="team-avatar mb-3">
+                                    <div class="rounded-circle bg-light d-inline-flex align-items-center justify-content-center"
+                                         style="width: 80px; height: 80px;">
+                                        <i class="fas fa-user fa-2x text-muted"></i>
+                                    </div>
+                                </div>
+                                <h5 class="fw-bold">{{ member.username }}</h5>
+                                <p class="text-muted mb-2">
+                                    {{ member.post_count }} post{{ member.post_count|pluralize }}
+                                </p>
+                                <a href="{% url 'blog:user_posts' member.username %}" 
+                                   class="btn btn-outline-primary btn-sm">
+                                    View Posts
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Recent Activity -->
+        <div class="row">
+            <div class="col-lg-6 mb-4">
+                <div class="card border-0 shadow">
+                    <div class="card-header bg-transparent border-0 py-4">
+                        <h4 class="mb-0 fw-semibold" style="color: var(--primary-color);">
+                            <i class="fas fa-clock me-2"></i>Recent Posts
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        {% for post in recent_posts %}
+                        <div class="d-flex align-items-start mb-3 pb-3 border-bottom">
+                            <div class="flex-grow-1">
+                                <h6 class="mb-1">
+                                    <a href="{{ post.get_absolute_url }}" class="text-decoration-none">
+                                        {{ post.title }}
+                                    </a>
+                                </h6>
+                                <small class="text-muted">
+                                    By {{ post.author.username }} • {{ post.created_at|timesince }} ago
+                                </small>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <p class="text-muted text-center">No recent posts</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <div class="card border-0 shadow">
+                    <div class="card-header bg-transparent border-0 py-4">
+                        <h4 class="mb-0 fw-semibold" style="color: var(--primary-color);">
+                            <i class="fas fa-fire me-2"></i>Popular Posts
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        {% for post in popular_posts %}
+                        <div class="d-flex align-items-start mb-3 pb-3 border-bottom">
+                            <div class="flex-grow-1">
+                                <h6 class="mb-1">
+                                    <a href="{{ post.get_absolute_url }}" class="text-decoration-none">
+                                        {{ post.title }}
+                                    </a>
+                                </h6>
+                                <small class="text-muted">
+                                    {{ post.view_count }} views • {{ post.get_like_count }} likes
+                                </small>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <p class="text-muted text-center">No popular posts</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="row mt-5">
+            <div class="col-lg-8 mx-auto text-center">
+                <div class="card border-0 shadow" style="background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));">
+                    <div class="card-body p-5 text-white">
+                        <h2 class="mb-3">Ready to Start Writing?</h2>
+                        <p class="mb-4 opacity-75">
+                            Join our community of writers and share your stories with the world.
+                        </p>
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'blog:post_create' %}" class="btn btn-light btn-lg">
+                                <i class="fas fa-plus me-2"></i>Create Your First Post
+                            </a>
+                        {% else %}
+                            <a href="{% url 'register' %}" class="btn btn-light btn-lg me-3">
+                                <i class="fas fa-user-plus me-2"></i>Join Now
+                            </a>
+                            <a href="{% url 'login' %}" class="btn btn-outline-light btn-lg">
+                                <i class="fas fa-sign-in-alt me-2"></i>Sign In
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.stats-icon, .feature-icon {
+    opacity: 0.8;
+}
+
+.team-avatar {
+    transition: transform 0.3s ease;
+}
+
+.team-avatar:hover {
+    transform: scale(1.1);
+}
+
+.card {
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+</style>
+{% endblock %}

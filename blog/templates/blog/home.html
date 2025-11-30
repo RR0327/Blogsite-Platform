@@ -1,0 +1,105 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% load blog_tags %}
+
+{% block title %}Home - BlogSite{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="row mb-5">
+    <div class="col-12">
+        <div class="text-center py-5" style="background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); border-radius: 15px; color: white;">
+            <h1 class="display-3 fw-bold mb-4">Welcome to BlogSite</h1>
+            <p class="lead mb-4 opacity-75">Share your stories, connect with readers, and build your audience</p>
+            {% if user.is_authenticated %}
+                <a href="{% url 'blog:post_create' %}" class="btn btn-light btn-lg me-3">
+                    <i class="fas fa-plus me-2"></i>Create New Post
+                </a>
+            {% else %}
+                <a href="{% url 'register' %}" class="btn btn-light btn-lg me-3">
+                    <i class="fas fa-user-plus me-2"></i>Join Now
+                </a>
+                <a href="{% url 'login' %}" class="btn btn-outline-light btn-lg">
+                    <i class="fas fa-sign-in-alt me-2"></i>Sign In
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Featured Posts -->
+{% if featured_posts %}
+<div class="row mb-5">
+    <div class="col-12">
+        <h2 class="mb-4" style="color: var(--primary-color);">
+            <i class="fas fa-star me-3"></i>Featured Posts
+        </h2>
+        <div class="row">
+            {% for post in featured_posts %}
+            <div class="col-lg-4 mb-4">
+                <div class="card post-card h-100">
+                    {% if post.featured_image %}
+                        <img src="{{ post.featured_image.url }}" class="card-img-top" alt="{{ post.title }}" style="height: 200px; object-fit: cover;">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="{{ post.get_absolute_url }}" class="text-decoration-none">{{ post.title }}</a>
+                        </h5>
+                        <p class="card-text text-muted">{{ post.excerpt|default:post.content|truncatewords:20 }}</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-0">
+                        <small class="text-muted">
+                            By {{ post.author.username }} • {{ post.created_at|date:"M d, Y" }}
+                        </small>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Recent Posts -->
+<div class="row">
+    <div class="col-lg-8">
+        <h2 class="mb-4" style="color: var(--primary-color);">
+            <i class="fas fa-newspaper me-3"></i>Latest Posts
+        </h2>
+        {% for post in recent_posts %}
+        <div class="card post-card mb-4">
+            <div class="card-body">
+                <h3 class="card-title">
+                    <a href="{{ post.get_absolute_url }}" class="text-decoration-none" style="color: var(--primary-color);">
+                        {{ post.title }}
+                    </a>
+                </h3>
+                <div class="text-muted mb-3">
+                    <small>
+                        By {{ post.author.username }} • {{ post.created_at|date:"F d, Y" }} • 
+                        {{ post.reading_time }} min read
+                    </small>
+                </div>
+                <p class="card-text">{{ post.excerpt|default:post.content|truncatewords:30 }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <span class="text-muted">
+                            <i class="fas fa-heart me-1" style="color: var(--accent-color);"></i>
+                            {{ post.get_like_count }} • 
+                            <i class="fas fa-comment me-1" style="color: var(--secondary-color);"></i>
+                            {{ post.comments.count }}
+                        </span>
+                    </div>
+                    <a href="{{ post.get_absolute_url }}" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Sidebar -->
+    <div class="col-lg-4">
+        {% include "blog/sidebar.html" %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% load blog_tags %}
+
+<!-- Recent Posts Widget -->
+<div class="sidebar-widget mb-4">
+    <h4 style="color: var(--secondary-color);">
+        <i class="fas fa-clock me-2"></i>Recent Posts
+    </h4>
+    {% show_recent_posts 5 %}
+</div>
+
+<!-- Popular Tags Widget -->
+<div class="sidebar-widget mb-4">
+    <h4 style="color: var(--secondary-color);">
+        <i class="fas fa-tags me-2"></i>Popular Tags
+    </h4>
+    {% get_popular_tags as tags %}
+    <div class="tag-cloud">
+        {% for tag in tags %}
+            <a href="{% url 'blog:posts_by_tag' tag.slug %}" class="tag-badge">
+                {{ tag.name }}
+            </a>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Statistics Widget -->
+<div class="sidebar-widget">
+    <h4 style="color: var(--secondary-color);">
+        <i class="fas fa-chart-bar me-2"></i>Blog Statistics
+    </h4>
+    {% get_post_statistics as stats %}
+    <div class="stats-list">
+        <div class="d-flex justify-content-between py-2 border-bottom">
+            <span>Total Posts:</span>
+            <strong>{{ stats.total_posts }}</strong>
+        </div>
+        <div class="d-flex justify-content-between py-2 border-bottom">
+            <span>Authors:</span>
+            <strong>{{ stats.total_authors }}</strong>
+        </div>
+        <div class="d-flex justify-content-between py-2 border-bottom">
+            <span>Comments:</span>
+            <strong>{{ stats.total_comments }}</strong>
+        </div>
+        <div class="d-flex justify-content-between py-2">
+            <span>Likes:</span>
+            <strong>{{ stats.total_likes }}</strong>
+        </div>
+    </div>
+</div>

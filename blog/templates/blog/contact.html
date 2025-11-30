@@ -1,0 +1,218 @@
+{% extends "blog/base.html" %}
+{% load static %}
+
+{% block title %}Contact - BlogSite{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        <!-- Header Section -->
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold" style="color: var(--primary-color);">
+                Contact Us
+            </h1>
+            <p class="lead text-muted">
+                We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+            </p>
+        </div>
+
+        <div class="row">
+            <!-- Contact Form -->
+            <div class="col-lg-8">
+                <div class="card border-0 shadow">
+                    <div class="card-body p-5">
+                        <h3 class="mb-4" style="color: var(--primary-color);">
+                            <i class="fas fa-envelope me-3"></i>Send us a Message
+                        </h3>
+                        
+                        <form method="post" novalidate>
+                            {% csrf_token %}
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <label for="name" class="form-label fw-semibold">
+                                        <i class="fas fa-user me-2"></i>Your Name
+                                    </label>
+                                    <input type="text" name="name" id="name" 
+                                           class="form-control" 
+                                           placeholder="Enter your name" 
+                                           required>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <label for="email" class="form-label fw-semibold">
+                                        <i class="fas fa-envelope me-2"></i>Email Address
+                                    </label>
+                                    <input type="email" name="email" id="email" 
+                                           class="form-control" 
+                                           placeholder="your@email.com" 
+                                           required>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="subject" class="form-label fw-semibold">
+                                    <i class="fas fa-tag me-2"></i>Subject
+                                </label>
+                                <input type="text" name="subject" id="subject" 
+                                       class="form-control" 
+                                       placeholder="What is this regarding?" 
+                                       required>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="message" class="form-label fw-semibold">
+                                    <i class="fas fa-comment me-2"></i>Message
+                                </label>
+                                <textarea name="message" id="message" 
+                                          class="form-control" 
+                                          rows="6" 
+                                          placeholder="Tell us how we can help you..." 
+                                          required></textarea>
+                            </div>
+
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-paper-plane me-2"></i>Send Message
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="col-lg-4 mt-4 mt-lg-0">
+                <div class="card border-0 shadow">
+                    <div class="card-body p-4">
+                        <h4 class="mb-4" style="color: var(--primary-color);">
+                            <i class="fas fa-info-circle me-2"></i>Get in Touch
+                        </h4>
+                        
+                        <div class="contact-info">
+                            <div class="d-flex align-items-center mb-4">
+                                <div class="contact-icon me-3">
+                                    <i class="fas fa-envelope fa-lg" style="color: var(--primary-color);"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-1 fw-semibold">Email</h6>
+                                    <p class="text-muted mb-0">support@djangoblog.com</p>
+                                </div>
+                            </div>
+
+                            <div class="d-flex align-items-center mb-4">
+                                <div class="contact-icon me-3">
+                                    <i class="fas fa-clock fa-lg" style="color: var(--success-color);"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-1 fw-semibold">Response Time</h6>
+                                    <p class="text-muted mb-0">Within 24 hours</p>
+                                </div>
+                            </div>
+
+                            <div class="d-flex align-items-center mb-4">
+                                <div class="contact-icon me-3">
+                                    <i class="fas fa-globe fa-lg" style="color: var(--warning-color);"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-1 fw-semibold">Community</h6>
+                                    <p class="text-muted mb-0">Join our growing community</p>
+                                </div>
+                            </div>
+
+                            <div class="d-flex align-items-center">
+                                <div class="contact-icon me-3">
+                                    <i class="fas fa-shield-alt fa-lg" style="color: var(--accent-color);"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-1 fw-semibold">Support</h6>
+                                    <p class="text-muted mb-0">We're here to help</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <div class="text-center">
+                            <h6 class="mb-3 fw-semibold">Follow Us</h6>
+                            <div class="d-flex justify-content-center gap-3">
+                                <a href="#" class="text-decoration-none">
+                                    <i class="fab fa-twitter fa-lg" style="color: var(--primary-color);"></i>
+                                </a>
+                                <a href="#" class="text-decoration-none">
+                                    <i class="fab fa-facebook fa-lg" style="color: var(--primary-color);"></i>
+                                </a>
+                                <a href="#" class="text-decoration-none">
+                                    <i class="fab fa-github fa-lg" style="color: var(--primary-color);"></i>
+                                </a>
+                                <a href="#" class="text-decoration-none">
+                                    <i class="fab fa-linkedin fa-lg" style="color: var(--primary-color);"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Quick Links -->
+                <div class="card border-0 shadow mt-4">
+                    <div class="card-body p-4">
+                        <h5 class="mb-3 fw-semibold" style="color: var(--primary-color);">
+                            <i class="fas fa-question-circle me-2"></i>Quick Help
+                        </h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <a href="{% url 'blog:post_list' %}" class="text-decoration-none text-muted">
+                                    <i class="fas fa-arrow-right me-2"></i>Browse all posts
+                                </a>
+                            </li>
+                            <li class="mb-2">
+                                <a href="{% url 'blog:about' %}" class="text-decoration-none text-muted">
+                                    <i class="fas fa-arrow-right me-2"></i>Learn more about us
+                                </a>
+                            </li>
+                            <li class="mb-2">
+                                <a href="{% url 'register' %}" class="text-decoration-none text-muted">
+                                    <i class="fas fa-arrow-right me-2"></i>Create an account
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'blog:documentation' %}" class="text-decoration-none text-muted">
+                                    <i class="fas fa-arrow-right me-2"></i>Read our documentation
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.contact-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--light-bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-control {
+    border-radius: 10px;
+    border: 2px solid var(--border-color);
+    padding: 0.75rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(44, 90, 160, 0.25);
+}
+
+.contact-info .d-flex:hover .contact-icon {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+</style>
+{% endblock %}
